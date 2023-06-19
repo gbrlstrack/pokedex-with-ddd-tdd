@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/domain/pokedex/entities/elemental_type.dart';
-import 'package:pokedex/presentation/pokedex/widgets/atoms/pokemon_type_chip.dart';
+import 'package:pokedex/configure_dependency_injection.dart';
+import 'package:pokedex/presentation/pokedex/screens/pokemon_list_screen.dart';
 
 void main() {
+  configureDependencyInjection();
   runApp(const MyApp());
 }
 
@@ -15,34 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: const Center(
-        child: PokemonTypeChip(
-          type: ElementalType.dark,
-        ),
-      ),
+      home: const PokemonListScreen(title: 'Pokedex'),
     );
   }
 }

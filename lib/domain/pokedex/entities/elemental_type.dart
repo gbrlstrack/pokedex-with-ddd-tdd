@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum ElementalType {
   bug,
   dragon,
@@ -10,7 +12,7 @@ enum ElementalType {
   steel,
   dark,
   electric,
-  fighter,
+  fighting,
   flying,
   grass,
   ice,
@@ -23,41 +25,41 @@ extension ElementalTypeExtension on ElementalType {
   String toLocalized() {
     switch (this) {
       case ElementalType.bug:
-        return "BUG";
+        return "Bug";
       case ElementalType.dragon:
-        return "DRAGON";
+        return "Dragon";
       case ElementalType.fairy:
-        return "FAIRY";
+        return "Fairy";
       case ElementalType.fire:
-        return "FIRE";
+        return "Fire";
       case ElementalType.ghost:
-        return "GHOST";
+        return "Ghost";
       case ElementalType.ground:
-        return "GROUND";
+        return "Ground";
       case ElementalType.normal:
-        return "NORMAL";
+        return "Normal";
       case ElementalType.psychic:
-        return "PSYCHIC";
+        return "Psychic";
       case ElementalType.steel:
-        return "STEEL";
+        return "Steel";
       case ElementalType.dark:
-        return "DARK";
+        return "Dark";
       case ElementalType.electric:
-        return "ELECTRIC";
-      case ElementalType.fighter:
-        return "FIGHTER";
+        return "Electric";
+      case ElementalType.fighting:
+        return "Fighting";
       case ElementalType.flying:
-        return "FLYING";
+        return "Flying";
       case ElementalType.grass:
-        return "GRASS";
+        return "Grass";
       case ElementalType.ice:
-        return "ICE";
+        return "Ice";
       case ElementalType.poison:
-        return "POISON";
+        return "Poison";
       case ElementalType.rock:
-        return "ROCK";
+        return "Rock";
       case ElementalType.water:
-        return "WATER";
+        return "Water";
     }
   }
 }
@@ -87,8 +89,8 @@ extension ParseElementalType on String {
         return ElementalType.dark;
       case 'electric':
         return ElementalType.electric;
-      case 'fighter':
-        return ElementalType.fighter;
+      case 'fighting':
+        return ElementalType.fighting;
       case 'flying':
         return ElementalType.flying;
       case 'grass':
@@ -102,7 +104,52 @@ extension ParseElementalType on String {
       case 'water':
         return ElementalType.water;
       default:
-        throw Exception('Invalid elemental type');
+        return ElementalType.normal;
+    }
+  }
+}
+
+extension GetElementalTypeColor on ElementalType {
+  Color getColor() {
+    switch (this) {
+      case ElementalType.dragon:
+        return Colors.deepPurpleAccent;
+      case ElementalType.fairy:
+        return Colors.pinkAccent.shade100;
+      case ElementalType.bug:
+        return const Color(0xff2CDAB1);
+      case ElementalType.fire:
+        return Colors.redAccent;
+      case ElementalType.grass:
+        return const Color(0xff2CDAB1);
+      case ElementalType.water:
+        return const Color(0xff58ABF6);
+      case ElementalType.normal:
+        return Colors.grey;
+      case ElementalType.poison:
+        return const Color(0xff9F5BBA);
+      case ElementalType.electric:
+        return const Color(0xffFFCE4B);
+      case ElementalType.ghost:
+        return Colors.deepPurple.shade800;
+      case ElementalType.ground:
+        return Colors.brown.shade400;
+      case ElementalType.psychic:
+        return Colors.pink.shade400;
+      case ElementalType.fighting:
+        return Colors.deepOrange.shade500;
+      case ElementalType.rock:
+        return Colors.lime.shade900;
+      case ElementalType.ice:
+        return Colors.cyanAccent.shade400;
+      case ElementalType.steel:
+        return Colors.blueGrey.shade200;
+      case ElementalType.dark:
+        return Colors.grey.shade800;
+      case ElementalType.flying:
+        return Colors.purple.shade200;
+      default:
+        return const Color(0xff303943);
     }
   }
 }

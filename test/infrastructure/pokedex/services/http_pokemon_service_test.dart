@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 import 'package:pokedex/domain/pokedex/entities/elemental_type.dart';
 import 'package:pokedex/domain/pokedex/entities/pokemon.dart';
+import 'package:pokedex/domain/pokedex/entities/stats.dart';
 import 'package:pokedex/domain/pokedex/services/pokemon_service.dart';
 import 'package:pokedex/infrastructure/pokedex/services/http_pokemon_service.dart';
 
@@ -23,11 +24,23 @@ void main() {
     test('should return a valid Pokemon on success', () async {
       //Arrange
       final expectedPokemon = Pokemon(
-          imageUri: Uri.https("raw.githubusercontent.com",
-              "/PokeAPI/sprites/master/sprites/pokemon/2.png"),
-          number: 2,
-          name: "Ivysaur",
-          type: [ElementalType.grass, ElementalType.poison]);
+        imageUri: Uri.https("raw.githubusercontent.com",
+            "/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/2.png"),
+        number: 2,
+        name: "Ivysaur",
+        type: [ElementalType.grass, ElementalType.poison],
+        height: 10,
+        weight: 130,
+        ability: "overgrow",
+        stats: Stats(
+          hp: 60,
+          attack: 62,
+          defense: 63,
+          specialAttack: 80,
+          specialDefense: 80,
+          speed: 60,
+        ),
+      );
       const pokemonId = 2;
       final uri = Uri.https('pokeapi.co', '/api/v2/pokemon/$pokemonId');
       final mockedResponse = http.Response(ivysaurFixture, 200);
@@ -62,11 +75,23 @@ void main() {
     test('should return a valid Pokemon on success', () async {
       //Arrange
       final expectedPokemon = Pokemon(
-          imageUri: Uri.https("raw.githubusercontent.com",
-              "/PokeAPI/sprites/master/sprites/pokemon/2.png"),
-          number: 2,
-          name: "Ivysaur",
-          type: [ElementalType.grass, ElementalType.poison]);
+        imageUri: Uri.https("raw.githubusercontent.com",
+            "/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/2.png"),
+        number: 2,
+        name: "Ivysaur",
+        type: [ElementalType.grass, ElementalType.poison],
+        height: 10,
+        weight: 130,
+        ability: "overgrow",
+        stats: Stats(
+          hp: 60,
+          attack: 62,
+          defense: 63,
+          specialAttack: 80,
+          specialDefense: 80,
+          speed: 60,
+        ),
+      );
       const pokemonName = 'ivysaur';
       final uri = Uri.https('pokeapi.co', '/api/v2/pokemon/$pokemonName');
       final mockedResponse = http.Response(ivysaurFixture, 200);
@@ -93,17 +118,41 @@ void main() {
       final uriPokemon2 = Uri.https('pokeapi.co', '/api/v2/pokemon/ivysaur');
       final List<Pokemon> expectedPokemonList = [
         Pokemon(
-            imageUri: Uri.https("raw.githubusercontent.com",
-                "/PokeAPI/sprites/master/sprites/pokemon/1.png"),
-            number: 1,
-            name: "Bulbasaur",
-            type: [ElementalType.grass, ElementalType.poison]),
+          imageUri: Uri.https("raw.githubusercontent.com",
+              "/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/1.png"),
+          number: 1,
+          name: "Bulbasaur",
+          type: [ElementalType.grass, ElementalType.poison],
+          height: 7,
+          weight: 69,
+          ability: "overgrow",
+          stats: Stats(
+            hp: 45,
+            attack: 49,
+            defense: 49,
+            specialAttack: 65,
+            specialDefense: 65,
+            speed: 45,
+          ),
+        ),
         Pokemon(
-            imageUri: Uri.https("raw.githubusercontent.com",
-                "/PokeAPI/sprites/master/sprites/pokemon/2.png"),
-            number: 2,
-            name: "Ivysaur",
-            type: [ElementalType.grass, ElementalType.poison]),
+          imageUri: Uri.https("raw.githubusercontent.com",
+              "/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/2.png"),
+          number: 2,
+          name: "Ivysaur",
+          type: [ElementalType.grass, ElementalType.poison],
+          height: 10,
+          weight: 130,
+          ability: "overgrow",
+          stats: Stats(
+            hp: 60,
+            attack: 62,
+            defense: 63,
+            specialAttack: 80,
+            specialDefense: 80,
+            speed: 60,
+          ),
+        ),
       ];
 
       final mockedResponse = http.Response(pokemonListFixture, 200);
